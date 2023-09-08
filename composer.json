@@ -1,0 +1,19 @@
+{
+    "name": "juanra.posada/app-salon_php_mvc_js_sass",
+    "description": "APP Salon MVC",
+    "type": "project",
+    "autoload": {
+        "psr-4": {
+            "MVC\\": "./",
+			"Controllers\\": "./controllers",
+			"Model\\" : "./Models"
+        }
+    },
+    "authors": [
+        {
+            "name": "Juanra Posada",
+            "email": "juanra.posada@gmail.com"
+        }
+    ],
+    "require": {}
+}

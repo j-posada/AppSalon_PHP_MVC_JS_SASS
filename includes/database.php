@@ -1,6 +1,7 @@
 <?php
 
-$db = mysqli_connect('localhost', 'root', '', '');
+//$db = mysqli_connect('localhost', 'root', '', '');
+$db = new mysqli('65.21.107.92', 'test', 'tset', '');
 
 
 if (!$db) {
