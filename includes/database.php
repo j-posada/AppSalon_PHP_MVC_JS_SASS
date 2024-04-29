@@ -1,7 +1,7 @@
 <?php
 
 //$db = mysqli_connect('localhost', 'root', '', '');
-$db = new mysqli('65.21.107.92', 'test', 'tset', '');
+$db = new mysqli('65.21.107.92', 'test', 'tset', 'bienesraices_crud');
 
 
 if (!$db) {
