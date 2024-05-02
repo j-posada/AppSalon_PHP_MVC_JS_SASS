@@ -12,8 +12,6 @@
 		<div class="imagen"></div>
 		<div class="app"><?php echo $contenido; ?></div>
 	</div>
-
-    
             
 </body>
 </html>
