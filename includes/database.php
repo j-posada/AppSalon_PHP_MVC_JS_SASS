@@ -1,7 +1,7 @@
 <?php
 
 //$db = mysqli_connect('localhost', 'root', '', '');
-$db = new mysqli('65.21.107.92', 'test', 'tset', 'bienesraices_crud');
+$db = new mysqli('65.21.107.92', 'test', 'tset', 'appsalon_mvc');
 
 
 if (!$db) {
