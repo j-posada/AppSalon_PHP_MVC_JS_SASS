@@ -49,11 +49,14 @@ class LoginController
 					$usuario->generarToken();
 					//Enviar email con token para validación
 					$email = new Email($usuario->email, ucwords(($usuario->nombre . " " . $usuario->apellido )),$usuario->token);
-
 					$email->enviarConfirmacion();
-				//	debuguear($email);
-					//updatear alertas
-					$alertas = Usuario::getAlertas();
+
+					//Crear usuario
+					$resultado = $usuario->guardar();
+
+					if ($resultado){
+						header('Location: /mensaje');
+					}
 				}
 			}
 		}
@@ -62,5 +65,9 @@ class LoginController
 			'usuario' => $usuario,
 			'alertas' => $alertas
 		]);
+	}
+	public static function mensaje(Router $router)
+	{
+		$router->render('auth/mensaje', []);
 	}
 }
