@@ -48,10 +48,10 @@ class LoginController
 					//Generar token
 					$usuario->generarToken();
 					//Enviar email con token para validación
-					$email = new Email($usuario->email,$usuario->nombre,$usuario->token);
+					$email = new Email($usuario->email, ucwords(($usuario->nombre . " " . $usuario->apellido )),$usuario->token);
 
-
-					debuguear($usuario);
+					$email->enviarConfirmacion();
+				//	debuguear($email);
 					//updatear alertas
 					$alertas = Usuario::getAlertas();
 				}
