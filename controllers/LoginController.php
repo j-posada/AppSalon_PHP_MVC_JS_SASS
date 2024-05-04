@@ -32,15 +32,20 @@ class LoginController
 		$usuario = new Usuario;
 
 		$alertas = [];
-		if ($_SERVER['REQUEST_METHOD']==='POST'){
-		//	debuguear($_POST);
+		if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+			//	debuguear($_POST);
 			$usuario->sincronizar($_POST);
 			$alertas = $usuario->validarNuevaCuenta();
 
-			if (empty($alertas)){
+			if (empty($alertas)) {
 				$resultado = $usuario->exiteUsuario();
-				if ($resultado->num_rows){
+				if ($resultado->num_rows) {
 					$alertas = Usuario::getAlertas();
+				} else {
+					//Usua o no Existe 
+					$usuario->hashPassword();
+					$alertas = Usuario::getAlertas();
+					//debuguear($usuario);
 				}
 			}
 		}

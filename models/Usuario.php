@@ -52,16 +52,20 @@ class Usuario extends ActiveRecord
 	}
 
 	//Revisa si el usuario ya exite
-	public function exiteUsuario(){
+	public function exiteUsuario()
+	{
 		$query = "SELECT * FROM " . self::$tabla . " WHERE email='" . $this->email . "' LIMIT 1";
 		$resultado = self::$db->query($query);
-		if  ($resultado->num_rows )
-		{
+		//Verificamos si exite el usuario
+		if ($resultado->num_rows) {
 			self::$alertas['error'][] = 'El usuario ya exite';
-		}
-		else{
-			debuguear("Usuario nuevo");
+		} else {
+			self::$alertas['exito'][] = 'Usuario creado correctamente';
 		}
 		return $resultado;
-}
+	}
+	public function hashPassword()
+	{
+		$this->password = password_hash($this->password, PASSWORD_BCRYPT);
+	}
 }
