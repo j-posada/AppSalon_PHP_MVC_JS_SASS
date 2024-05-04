@@ -61,11 +61,17 @@ class Usuario extends ActiveRecord
 			self::$alertas['error'][] = 'El usuario ya exite';
 		} else {
 			self::$alertas['exito'][] = 'Usuario creado correctamente';
+			
 		}
 		return $resultado;
 	}
 	public function hashPassword()
 	{
 		$this->password = password_hash($this->password, PASSWORD_BCRYPT);
+	}
+
+	public function generarToken()
+	{
+		$this->token = uniqid();
 	}
 }

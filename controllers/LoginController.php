@@ -44,8 +44,11 @@ class LoginController
 				} else {
 					//Usua o no Existe 
 					$usuario->hashPassword();
+					//Generar token
+					$usuario->generarToken();
+					debuguear($usuario);
+					//updatear alertas
 					$alertas = Usuario::getAlertas();
-					//debuguear($usuario);
 				}
 			}
 		}
