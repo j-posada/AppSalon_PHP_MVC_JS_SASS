@@ -1,10 +1,12 @@
 <?php
+
 namespace Model;
 
-class Usuario extends ActiveRecord {
+class Usuario extends ActiveRecord
+{
 	//Base de datos
 	protected static $tabla = 'usuarios';
-	protected static $columnasDB = ['id','nombre','apellido','email','password','telefono','admin','confirmado','token'];
+	protected static $columnasDB = ['id', 'nombre', 'apellido', 'email', 'password', 'telefono', 'admin', 'confirmado', 'token'];
 	public $id;
 	public $nombre;
 	public $apellido;
@@ -29,24 +31,37 @@ class Usuario extends ActiveRecord {
 	}
 
 	// Validación de campos 
-	public function validarNuevaCuenta () {
-		if (!$this->nombre){
+	public function validarNuevaCuenta()
+	{
+		if (!$this->nombre) {
 			self::$alertas['error'][] = 'El nombre no puede estar vacio';
 		}
-		if (!$this->apellido){
+		if (!$this->apellido) {
 			self::$alertas['error'][] = 'El apellido no puede estar vacio';
 		}
-		if (!$this->email){
+		if (!$this->email) {
 			self::$alertas['error'][] = 'El email no puede estar vacio';
 		}
-		if (!$this->password){
+		if (!$this->password) {
 			self::$alertas['error'][] = 'El password no puede estar vacio';
 		}
-		if (strlen($this->password) < 6 ){
+		if (strlen($this->password) < 6) {
 			self::$alertas['error'][] = 'El password deber tener mínimo 6 caracteres';
 		}
-
-
 		return self::$alertas;
 	}
+
+	//Revisa si el usuario ya exite
+	public function exiteUsuario(){
+		$query = "SELECT * FROM " . self::$tabla . " WHERE email='" . $this->email . "' LIMIT 1";
+		$resultado = self::$db->query($query);
+		if  ($resultado->num_rows )
+		{
+			self::$alertas['error'][] = 'El usuario ya exite';
+		}
+		else{
+			debuguear("Usuario nuevo");
+		}
+		return $resultado;
+}
 }

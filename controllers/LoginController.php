@@ -38,7 +38,10 @@ class LoginController
 			$alertas = $usuario->validarNuevaCuenta();
 
 			if (empty($alertas)){
-				$alertas['exito'][]="Todo correcto";
+				$resultado = $usuario->exiteUsuario();
+				if ($resultado->num_rows){
+					$alertas = Usuario::getAlertas();
+				}
 			}
 		}
 
