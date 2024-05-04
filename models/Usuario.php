@@ -36,6 +36,15 @@ class Usuario extends ActiveRecord {
 		if (!$this->apellido){
 			self::$alertas['error'][] = 'El apellido no puede estar vacio';
 		}
+		if (!$this->email){
+			self::$alertas['error'][] = 'El email no puede estar vacio';
+		}
+		if (!$this->password){
+			self::$alertas['error'][] = 'El password no puede estar vacio';
+		}
+		if (strlen($this->password) < 6 ){
+			self::$alertas['error'][] = 'El password deber tener mínimo 6 caracteres';
+		}
 
 
 		return self::$alertas;
