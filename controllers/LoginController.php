@@ -48,13 +48,13 @@ class LoginController
 					//Generar token
 					$usuario->generarToken();
 					//Enviar email con token para validación
-					$email = new Email($usuario->email, ucwords(($usuario->nombre . " " . $usuario->apellido )),$usuario->token);
+					$email = new Email($usuario->email, ucwords(($usuario->nombre . " " . $usuario->apellido)), $usuario->token);
 					$email->enviarConfirmacion();
 
 					//Crear usuario
 					$resultado = $usuario->guardar();
 
-					if ($resultado){
+					if ($resultado) {
 						header('Location: /mensaje');
 					}
 				}
@@ -75,8 +75,19 @@ class LoginController
 	{
 		$alertas = [];
 		$token = s($_GET['token']);
-		$usuario= Usuario::where('token', $token);
-		debuguear($usuario);
+		$usuario = Usuario::where('token', $token);
+
+		if (empty($usuario)) {
+			// Mensaje de error
+			Usuario::setAlerta('error', 'Token no válido');
+		} else {
+			$usuario->confirmado = 1;
+			$usuario->token = null;
+			$usuario->guardar();
+			Usuario::setAlerta('exito', 'Token confirmado');
+			// Modificar usuario confirmado
+		}
+		$alertas = Usuario::getAlertas();
 		$router->render('auth/confirmar-cuenta', [
 			'alertas' => $alertas
 		]);
