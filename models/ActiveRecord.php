@@ -52,7 +52,7 @@ class ActiveRecord {
         $objeto = new static;
 
         foreach($registro as $key => $value ) {
-            if(property_exists( $objeto, $key  )) {
+            if(property_exists( $objeto, $key )) {
                 $objeto->$key = $value;
             }
         }
@@ -116,9 +116,17 @@ class ActiveRecord {
         return array_shift( $resultado ) ;
     }
 
+	    // Busca un registro por su id
+		public static function where($columna,$valor) {
+			$query = "SELECT * FROM " . static::$tabla  ." WHERE ${columna} = '${valor}'";
+			$resultado = self::consultarSQL($query);
+			return array_shift( $resultado ) ;
+		}
+
     // Obtener Registros con cierta cantidad
     public static function get($limite) {
         $query = "SELECT * FROM " . static::$tabla . " LIMIT ${limite}";
+
         $resultado = self::consultarSQL($query);
         return array_shift( $resultado ) ;
     }
@@ -131,9 +139,9 @@ class ActiveRecord {
         // Insertar en la base de datos
         $query = " INSERT INTO " . static::$tabla . " ( ";
         $query .= join(', ', array_keys($atributos));
-        $query .= " ) VALUES (' "; 
+        $query .= " ) VALUES ('"; 
         $query .= join("', '", array_values($atributos));
-        $query .= " ') ";
+        $query .= "') ";
 
         // Resultado de la consulta
         $resultado = self::$db->query($query);
