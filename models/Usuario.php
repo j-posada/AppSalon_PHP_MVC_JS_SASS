@@ -87,8 +87,10 @@ class Usuario extends ActiveRecord
 		$this->token = uniqid();
 	}
 
-	public function comprobarPasswordAndConfimado()
+	public function comprobarPasswordAndConfimado($password)
 	{
-		debuguear($this);
+		$resultado = password_verify($password, $this->password);
+		debuguear($resultado);
+		return $resultado;
 	}
 }

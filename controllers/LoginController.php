@@ -23,7 +23,7 @@ class LoginController
 
 				if ($usuario){
 					//Verificar Paswword y Token Confirmardo
-					$usuario->comprobarPasswordAndConfimado();
+					$usuario->comprobarPasswordAndConfimado($auth->password);
 				}
 				else{
 					Usuario::setAlerta('error','Usuario NO encontrado');
