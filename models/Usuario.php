@@ -31,6 +31,7 @@ class Usuario extends ActiveRecord
 	}
 
 	// Validación de campos 
+	// Usuario
 	public function validarNuevaCuenta()
 	{
 		if (!$this->nombre) {
@@ -47,6 +48,17 @@ class Usuario extends ActiveRecord
 		}
 		if (strlen($this->password) < 6) {
 			self::$alertas['error'][] = 'El password deber tener mínimo 6 caracteres';
+		}
+		return self::$alertas;
+	}
+	// Login
+	public function validarLogin()
+	{
+		if (!$this->email) {
+			self::$alertas['error'][] = 'El email no puede estar vacio';
+		}
+		if (!$this->password) {
+			self::$alertas['error'][] = 'El password no puede estar vacio';
 		}
 		return self::$alertas;
 	}
