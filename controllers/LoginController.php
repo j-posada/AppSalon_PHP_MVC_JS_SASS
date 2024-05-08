@@ -23,7 +23,25 @@ class LoginController
 
 				if ($usuario){
 					//Verificar Paswword y Token Confirmardo
-					$usuario->comprobarPasswordAndConfimado($auth->password);
+					if ($usuario->comprobarPasswordAndConfimado($auth->password)){
+						// Autenticar al usuario
+						session_start();
+						$_SESSION['id']=$usuario->id;
+						$_SESSION['nombre']=$usuario->nombre. " " . $usuario->apellido;
+						$_SESSION['email']=$usuario->email;
+						$_SESSION['login']=true;
+
+
+						if ($usuario->admin === "1"){
+							//Admin
+							$_SESSION['admin'] = $usuario->admin || null; // NO pongo valor directo para que siempre sea el valor de mi db
+							header('Location: /admin');
+						}
+						else{
+							//Cliente
+							header('Location: /cita');
+						}
+					}
 				}
 				else{
 					Usuario::setAlerta('error','Usuario NO encontrado');
