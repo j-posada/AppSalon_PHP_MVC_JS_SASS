@@ -63,6 +63,14 @@ class Usuario extends ActiveRecord
 		return self::$alertas;
 	}
 
+	public function validarEmail()
+	{
+		if (!$this->email) {
+			self::$alertas['error'][] = 'El email no puede estar vacio';
+		}
+		return self::$alertas;
+	}
+
 	//Revisa si el usuario ya exite
 	public function exiteUsuario()
 	{
