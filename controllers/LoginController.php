@@ -67,11 +67,24 @@ class LoginController
 			$auth = new Usuario($_POST);
 			$alertas = $auth->validarEmail();
 			if (empty($alertas)){
-				$alertas['exito'][] = 'vamos';
+				$usuario = Usuario::where('email',$auth->email);
+				if($usuario)
+				{
+					$usuario->generarToken();
+					$usuario->guardar();
+
+					// Pendiente enviar email.
+					Usuario::setAlerta('exito','Revisa tu email');
+				}
+				else{
+					Usuario::setAlerta('error','Usuario NO encontrado');
+				}
+				//debuguear($usuario);
+				
 			}
 			//		debuguear($auth);
 		}
-			
+		$alertas = Usuario::getAlertas();	
 		$router->render('auth/olvide-password', [
 			'alertas' => $alertas
 		]);
