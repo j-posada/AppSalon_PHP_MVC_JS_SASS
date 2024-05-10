@@ -96,8 +96,27 @@ class LoginController
 	public static function recuperar(Router $router)
 	{
 		$alertas = [];
+		$error = false;
+
+		$token = s($_GET['token']);
+		$usuario = Usuario::where('token', $token);
+
+
+		if (empty($usuario)) {
+			Usuario::setAlerta('error','Error: Token no reconocido');
+			$error = true;
+		//		debuguear($auth);
+		}
+		
+		if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+			Usuario::setAlerta('exito','contraseña actualizada');
+			$error = true;
+		}
+
+		$alertas=Usuario::getAlertas();
 		$router->render('auth/recuperar-password', [
-			'alertas' => $alertas
+			'alertas' => $alertas,
+			'error' => $error
 		]);
 	}
 

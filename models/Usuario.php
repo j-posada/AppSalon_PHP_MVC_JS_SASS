@@ -71,6 +71,16 @@ class Usuario extends ActiveRecord
 		return self::$alertas;
 	}
 
+	public function validarPassword()
+	{
+		if (!$this->password) {
+			self::$alertas['error'][] = 'El password no puede estar vacio';
+		}
+		if (strlen($this->password) < 6) {
+			self::$alertas['error'][] = 'El password deber tener mínimo 6 caracteres';
+		}
+		return self::$alertas;
+	}
 	//Revisa si el usuario ya exite
 	public function exiteUsuario()
 	{
