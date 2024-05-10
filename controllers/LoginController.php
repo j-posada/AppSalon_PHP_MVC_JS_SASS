@@ -109,8 +109,26 @@ class LoginController
 		}
 		
 		if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-			Usuario::setAlerta('exito','contraseña actualizada');
-			$error = true;
+			$password = new Usuario($_POST);
+			$alertas = $password->validarPassword();
+
+			if (empty($alertas))
+			{
+				
+				$usuario->password = null;
+				$usuario->password = $password->password;
+				$usuario->hashPassword();
+				$usuario->token = null;
+
+				$resultado = $usuario->guardar();
+				if ($resultado) {
+					header('Location: /');
+				}
+
+
+
+			}
+			
 		}
 
 		$alertas=Usuario::getAlertas();
