@@ -6,19 +6,30 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 function iniciarApp() {
+	mostrarSeccion();
 	tabs();
 }
 
 function mostrarSeccion() {
 
 	// Ocular la sección actual
-	const seccionAnterior = document.querySelector(' .mostrar');
+	const seccionAnterior = document.querySelector('.mostrar');
 	if (seccionAnterior) {
 		seccionAnterior.classList.remove('mostrar');
 	}
+	// Quita el focus del botón actual
+	const tabAnterior = document.querySelector('.actual');
+	if (tabAnterior) {
+		tabAnterior.classList.remove('actual');
+	}
+
 	// Mostras la sección pulsada
 	const seccion = document.querySelector(`#paso-${paso}`);
 	seccion.classList.add('mostrar');
+
+	// Cambiar focus del botón pulsado.
+	const tab = document.querySelector(`[data-paso="${paso}"]`);
+	tab.classList.add('actual');
 }
 
 function tabs() {
