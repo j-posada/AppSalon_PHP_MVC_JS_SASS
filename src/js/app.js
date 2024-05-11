@@ -1,13 +1,13 @@
 let paso = 1;
 
-
 document.addEventListener('DOMContentLoaded', function () {
 	iniciarApp();
 });
 
 function iniciarApp() {
-	mostrarSeccion();
-	tabs();
+	mostrarSeccion(); // Muestra y oculta las secciones. (Firt time)
+	tabs(); // Cabmia la sección cuando se presionen los tabs
+	botonesPaginador(); // Agrega o quita los botones del paginador.
 }
 
 function mostrarSeccion() {
@@ -30,6 +30,8 @@ function mostrarSeccion() {
 	// Cambiar focus del botón pulsado.
 	const tab = document.querySelector(`[data-paso="${paso}"]`);
 	tab.classList.add('actual');
+
+	
 }
 
 function tabs() {
@@ -39,7 +41,25 @@ function tabs() {
 		boton.addEventListener('click', function (e) {
 			paso = parseInt(e.target.dataset.paso);
 			mostrarSeccion();
-			//console.log("diste click en el botón: "+ boton.innerHTML);
+			botonesPaginador();			//console.log("diste click en el botón: "+ boton.innerHTML);
 		});
 	});
+}
+
+function botonesPaginador() {
+	const paginaAnterior = document.querySelector('#anterior');
+	const paginaSiguinete = document.querySelector('#siguiente');
+
+	if (paso === 1) {
+		paginaAnterior.classList.add('ocultar');
+		paginaSiguinete.classList.remove('ocultar')
+
+	} else if (paso === 3) {
+		paginaAnterior.classList.remove('ocultar');
+		paginaSiguinete.classList.add('ocultar')
+	}
+	else{
+		paginaAnterior.classList.remove('ocultar');
+		paginaSiguinete.classList.remove('ocultar')
+	}
 }
