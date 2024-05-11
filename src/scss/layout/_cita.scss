@@ -3,20 +3,19 @@
 
 .seccion {
 
-	display: none;
 	padding: 5rem 0;
+	display: none;
 
 	.text-center {
 		text-align: center;
 		color: darken(v.$blanco, 70%);
 	}
+}
 
-	.mostrar {
-		display: blcok;
-	}
+.mostrar {
+	display: block;
+}
 
-	.ocultar {
-		display: none;
-	}
-
+.ocultar {
+	display: none;
 }
