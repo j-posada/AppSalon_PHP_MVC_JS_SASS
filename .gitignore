@@ -4,3 +4,4 @@ package-lock.json
 db/BD_BienesRaices.mwb.bak
 /public/imagenes
 /vendor/
+composer.lock
