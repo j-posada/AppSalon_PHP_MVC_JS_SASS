@@ -1,14 +1,22 @@
 @use 'base/variables' as v;
 @use 'base/mixins' as m;
 
-.seccion{
+.seccion {
+
+	display: none;
 	padding: 5rem 0;
-	.text-center{
+
+	.text-center {
 		text-align: center;
 		color: darken(v.$blanco, 70%);
 	}
 
-	&:nth-child(3), &:nth-child(4){
+	.mostrar {
+		display: blcok;
+	}
+
+	.ocultar {
 		display: none;
 	}
+
 }

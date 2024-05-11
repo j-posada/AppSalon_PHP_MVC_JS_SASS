@@ -65,4 +65,10 @@ include_once __DIR__ . "/../templates/alertas.php"
 		class="boton">Siguiente &raquo;</button>
 	</div>
 
+	<?php
+	$script = "
+	<script src='build/js/app.js'></script>
+	";
+	?>
+
 </div>
