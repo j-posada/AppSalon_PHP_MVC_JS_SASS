@@ -1,7 +1,7 @@
 @use 'base/variables' as v;
 @use 'base/mixins' as m;
 
-.tabs {
+.paginacion {
 
 	@include m.tablet {
 		display: flex;
@@ -15,7 +15,7 @@
 		display: block;
 		width: 100%;
 		padding: 1rem;
-		margin-bottom: 1rem;
+		margin: 0 0 1rem 0;
 		text-transform: uppercase;
 		font-weight: v.$bold;
 		transition: background-color 300ms ease;
