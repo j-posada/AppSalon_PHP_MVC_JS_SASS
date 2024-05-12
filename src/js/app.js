@@ -11,6 +11,8 @@ function iniciarApp() {
 	botonesPaginador(); // Agrega o quita los botones del paginador.
 	bt_paginaSiguiente();
 	bt_paginaAnterior();
+
+	consultarAPI();
 }
 
 function mostrarSeccion() {
@@ -34,7 +36,7 @@ function mostrarSeccion() {
 	const tab = document.querySelector(`[data-paso="${paso}"]`);
 	tab.classList.add('actual');
 
-	
+
 }
 
 function tabs() {
@@ -61,7 +63,7 @@ function botonesPaginador() {
 		paginaAnterior.classList.remove('ocultar');
 		paginaSiguinete.classList.add('ocultar')
 	}
-	else{
+	else {
 		paginaAnterior.classList.remove('ocultar');
 		paginaSiguinete.classList.remove('ocultar')
 	}
@@ -71,17 +73,33 @@ function botonesPaginador() {
 function bt_paginaSiguiente() {
 	const bt_paginaSiguiente = document.querySelector('#siguiente');
 	bt_paginaSiguiente.addEventListener('click', function () {
-		paso++;	
-		
+		paso++;
+
 		botonesPaginador();
 	});
 
 }
 
-function bt_paginaAnterior () {
+function bt_paginaAnterior() {
 	const bt_paginaAnterior = document.querySelector('#anterior');
 	bt_paginaAnterior.addEventListener('click', function () {
-		paso--;	
+		paso--;
 		botonesPaginador();
 	});
+}
+
+async function consultarAPI() {
+
+	try {
+		const url = 'http://localhost:3000/api/servicios';
+		const resultado = await fetch(url);
+		const servicios = await resultado.json();
+		console.table(servicios);
+
+	} catch (error) {
+		console.log(error);
+	}
+
+
+
 }
