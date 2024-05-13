@@ -1,5 +1,11 @@
 let paso = 1;
 
+const cita ={
+	nombre:"",
+	fecha: "",
+	hora: "",
+	servicios: []
+}
 
 document.addEventListener('DOMContentLoaded', function () {
 	iniciarApp();
@@ -116,6 +122,9 @@ async function consultarAPI() {
 			const servicioDiv = document.createElement('DIV');
 			servicioDiv.classList.add('servicio');
 			servicioDiv.dataset.idServicio = id;
+			servicioDiv.onclick = function (){
+				seleccionarServicio(servicio);
+			} 
 
 			servicioDiv.appendChild(nombreServicio);
 			servicioDiv.appendChild(precioServicio);
@@ -124,5 +133,12 @@ async function consultarAPI() {
 
 		})
 	}
+
+}
+function seleccionarServicio(servicio){
+const {servicios} = cita;
+cita.servicios = [...servicios, servicio];
+
+console.dir(cita);
 
 }
