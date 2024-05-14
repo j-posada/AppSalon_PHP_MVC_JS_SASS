@@ -22,9 +22,12 @@
 			cursor: pointer;
 			transform: scale(1.05);
 			background-color: lighten(v.$azul, 40%);
-			box-shadow: 1rem;
+			box-shadow:
+				inset 0 -3em 3em rgba(0, 0, 0, 0.1),
+				0 0 0 2px v.$negro,
+				0.3em 0.3em 1em rgba(0, 0, 0, 0.3);
 		}
-		
+
 		p {
 			color: v.$negro;
 			margin: 0 0 calc(v.$separacion /8) 0;
@@ -34,6 +37,7 @@
 			p {
 				color: v.$blanco;
 			}
+
 			transform: scale(1);
 			background-color: v.$azul;
 			color: v.$blanco;

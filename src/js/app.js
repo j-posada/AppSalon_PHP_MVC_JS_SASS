@@ -1,7 +1,7 @@
 let paso = 1;
 
-const cita ={
-	nombre:"",
+const cita = {
+	nombre: "",
 	fecha: "",
 	hora: "",
 	servicios: []
@@ -125,9 +125,9 @@ async function consultarAPI() {
 			servicioDiv.appendChild(nombreServicio);
 			servicioDiv.appendChild(precioServicio);
 
-			servicioDiv.onclick = function (){
-				seleccionarServicio(servicio);
-			} 
+			servicioDiv.onclick = function () {
+				seleccionarServicio(servicio, servicioDiv);
+			}
 
 			document.querySelector('#servicios').appendChild(servicioDiv);
 
@@ -135,11 +135,25 @@ async function consultarAPI() {
 	}
 
 }
-function seleccionarServicio(servicio){
-const {id} = servicio;
-const {servicios} = cita;
-cita.servicios = [...servicios, servicio];
-const divServicio = document.querySelector(`[data-id-servicio="${id}"]`); 
-divServicio.classList.add('seleccionado');
+function seleccionarServicio(servicio, div) {
+	const { id } = servicio;
+	const { servicios } = cita;
+
+	if (servicios.some(agregado => agregado.id === servicio.id)) {
+		// Retiro servicio
+		cita.servicios = servicios.filter(agregado => agregado.id != servicio.id);
+		div.classList.remove('seleccionado');
+	}
+	else {
+		//Agrego servicio
+		cita.servicios = [...servicios, servicio];
+		div.classList.add('seleccionado');
+
+	}
+
+	//const divServicio = document.querySelector(`[data-id-servicio="${id}"]`); 
+	//divServicio.classList.add('seleccionado');
+	//div.classList.add('seleccionado');
+	console.log(cita);
 
 }
