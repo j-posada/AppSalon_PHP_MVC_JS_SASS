@@ -21,6 +21,7 @@ function iniciarApp() {
 	nombreCliente();
 
 	seleccionarFecha();
+	seleccionarHora();
 }
 
 function mostrarSeccion() {
@@ -168,20 +169,36 @@ function seleccionarFecha() {
 		const dia = new Date(e.target.value).getUTCDay();
 
 		if ([6, 0].includes(dia)) {
-			e.target.value='';
-			mostrarAlerta('Fines de semana no permitidos','error');
+			e.target.value = '';
+			mostrarAlerta('Fines de semana no permitidos', 'error');
 		}
 		else {
 			cita.fecha = e.target.value;
 		}
-		console.log(cita);
 	})
 }
 
-function mostrarAlerta(mensaje, tipo)
-{
+function seleccionarHora() {
+	const inputHora = document.querySelector('#hora');
+	inputHora.step = '900';
+	inputHora.addEventListener('input', function (e) {
+		const hora = (e.target.value).split(':')[0];
+		console.log(hora)
+		if (hora < 10 || hora > 19){ 
+			e.target.value = '';
+			mostrarAlerta('Fuera de horario de apertura, de 10 a 19h','error')
+
+		}
+		else{
+			cita.hora = e.target.value;
+		}
+
+	})
+}
+
+function mostrarAlerta(mensaje, tipo) {
 	// revisa que no tengamo ya una alerta.
-	if (document.querySelector(".alerta")){
+	if (document.querySelector(".alerta")) {
 		return;
 	}
 
@@ -198,3 +215,4 @@ function mostrarAlerta(mensaje, tipo)
 	}, 2500);
 
 }
+
