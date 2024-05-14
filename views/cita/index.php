@@ -27,10 +27,9 @@ include_once __DIR__ . "/../templates/alertas.php"
 					id="nombre" 
 					name="nombre" 
 					placeholder="Tu nombre" 
-					value="<?php echo s($nombre) ?>"
+					value= "<?php echo s($nombre); ?>"
 					disabled
 				/>
-
 			</div>
 			<div class="campo">
 				<label for="fecha">Fecha</label>
@@ -38,6 +37,7 @@ include_once __DIR__ . "/../templates/alertas.php"
 					type="date" 
 					id="fecha" 
 					name="fecha" 
+					min = "<?php echo date(('Y-m-d'), strtotime('+1 day')); ?>"
 				/>
 			</div>
 			<div class="campo">
