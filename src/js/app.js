@@ -14,11 +14,13 @@ document.addEventListener('DOMContentLoaded', function () {
 function iniciarApp() {
 	mostrarSeccion(); // Muestra y oculta las secciones. (Firt time)
 	tabs(); // Cabmia la sección cuando se presionen los tabs
-	botonesPaginador(); // Agrega o quita los botones del paginador.
+	botonesPaginador(); // Inicia botones del paginador.
 	bt_paginaSiguiente();
 	bt_paginaAnterior();
 	consultarAPI();
 	nombreCliente();
+
+	seleccionarFecha();
 }
 
 function mostrarSeccion() {
@@ -154,10 +156,23 @@ function seleccionarServicio(servicio, div) {
 	//const divServicio = document.querySelector(`[data-id-servicio="${id}"]`); 
 	//divServicio.classList.add('seleccionado');
 	//div.classList.add('seleccionado');
-	console.log(cita);
-
 }
 
-function nombreCliente (){
- 	cita.nombre = document.querySelector('#nombre').value;
+function nombreCliente() {
+	cita.nombre = document.querySelector('#nombre').value;
+}
+
+function seleccionarFecha() {
+	const inputFecha = document.querySelector('#fecha');
+	inputFecha.addEventListener('input', function (e) {
+		const dia = new Date(e.target.value).getUTCDay();
+
+		if ([6, 0].includes(dia)) {
+			console.log('No se abren los sábados o domingos.')
+		}
+		else {
+			cita.fecha = e.target.value;
+		}
+		console.log(cita);
+	})
 }
