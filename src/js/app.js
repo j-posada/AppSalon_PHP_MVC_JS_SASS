@@ -17,8 +17,8 @@ function iniciarApp() {
 	botonesPaginador(); // Agrega o quita los botones del paginador.
 	bt_paginaSiguiente();
 	bt_paginaAnterior();
-
 	consultarAPI();
+	nombreCliente();
 }
 
 function mostrarSeccion() {
@@ -156,4 +156,8 @@ function seleccionarServicio(servicio, div) {
 	//div.classList.add('seleccionado');
 	console.log(cita);
 
+}
+
+function nombreCliente (){
+ 	cita.nombre = document.querySelector('#nombre').value;
 }
