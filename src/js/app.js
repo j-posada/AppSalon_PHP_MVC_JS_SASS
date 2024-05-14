@@ -122,12 +122,12 @@ async function consultarAPI() {
 			const servicioDiv = document.createElement('DIV');
 			servicioDiv.classList.add('servicio');
 			servicioDiv.dataset.idServicio = id;
+			servicioDiv.appendChild(nombreServicio);
+			servicioDiv.appendChild(precioServicio);
+
 			servicioDiv.onclick = function (){
 				seleccionarServicio(servicio);
 			} 
-
-			servicioDiv.appendChild(nombreServicio);
-			servicioDiv.appendChild(precioServicio);
 
 			document.querySelector('#servicios').appendChild(servicioDiv);
 
@@ -136,9 +136,10 @@ async function consultarAPI() {
 
 }
 function seleccionarServicio(servicio){
+const {id} = servicio;
 const {servicios} = cita;
 cita.servicios = [...servicios, servicio];
-
-console.dir(cita);
+const divServicio = document.querySelector(`[data-id-servicio="${id}"]`); 
+divServicio.classList.add('seleccionado');
 
 }

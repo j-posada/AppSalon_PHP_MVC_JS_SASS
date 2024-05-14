@@ -24,10 +24,19 @@
 			background-color: lighten(v.$azul, 40%);
 			box-shadow: 1rem;
 		}
-
+		
 		p {
 			color: v.$negro;
 			margin: 0 0 calc(v.$separacion /8) 0;
+		}
+
+		&.seleccionado {
+			p {
+				color: v.$blanco;
+			}
+			transform: scale(1);
+			background-color: v.$azul;
+			color: v.$blanco;
 		}
 
 		.precio-servicio {
