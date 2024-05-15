@@ -173,7 +173,7 @@ function seleccionarFecha() {
 
 		if ([6, 0].includes(dia)) {
 			e.target.value = '';
-			mostrarAlerta('Fines de semana no permitidos', 'error');
+			mostrarAlerta('Fines de semana no permitidos', 'error', '.formulario');
 		}
 		else {
 			cita.fecha = e.target.value;
@@ -189,7 +189,7 @@ function seleccionarHora() {
 		console.log(hora)
 		if (hora < 10 || hora > 19) {
 			e.target.value = '';
-			mostrarAlerta('Fuera de horario de apertura, de 10 a 19h', 'error')
+			mostrarAlerta('Fuera de horario de apertura, de 10 a 19h', 'error', '.formulario')
 
 		}
 		else {
@@ -201,10 +201,9 @@ function seleccionarHora() {
 
 function mostrarResumen() {
 	const resumen = document.querySelector(".contenido-resumen");
-	console.log(resumen);
 
-	if (Object.values(cita).includes("")) {
-		console.log("Registro incompleto");
+	if (Object.values(cita).includes("") || (cita.servicios.length === 0)) {
+		mostrarAlerta('Elige al menos un servicio y la fecha y la hora', 'error', '.contenido-resumen', false)
 	}
 	else {
 		console.log("vamos para adelante");
@@ -212,10 +211,10 @@ function mostrarResumen() {
 }
 
 
-function mostrarAlerta(mensaje, tipo) {
+function mostrarAlerta(mensaje, tipo, elemento, autolimpiar = true) {
 	// revisa que no tengamo ya una alerta.
 	if (document.querySelector(".alerta")) {
-		return;
+		(document.querySelector(".alerta")).remove();
 	}
 
 	const alerta = document.createElement('DIV');
@@ -223,12 +222,15 @@ function mostrarAlerta(mensaje, tipo) {
 	alerta.classList.add('alerta');
 	alerta.classList.add(tipo);
 
-	const formulario = document.querySelector('.formulario');
-	formulario.appendChild(alerta);
+	const referencia = document.querySelector(elemento);
+	referencia.appendChild(alerta);
 
-	setTimeout(() => {
-		alerta.remove();
-	}, 2500);
+	if (autolimpiar) {
+		setTimeout(() => {
+			alerta.remove();
+		}, 2500);
+	}
+
 
 }
 
