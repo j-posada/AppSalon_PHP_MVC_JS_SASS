@@ -186,7 +186,7 @@ function seleccionarHora() {
 	inputHora.step = '900';
 	inputHora.addEventListener('input', function (e) {
 		const hora = (e.target.value).split(':')[0];
-		console.log(hora)
+
 		if (hora < 10 || hora > 19) {
 			e.target.value = '';
 			mostrarAlerta('Fuera de horario de apertura, de 10 a 19h', 'error', '.formulario')
@@ -201,14 +201,51 @@ function seleccionarHora() {
 
 function mostrarResumen() {
 	const resumen = document.querySelector(".contenido-resumen");
+	
+
+	if (document.querySelector(".alerta")) {
+		(document.querySelector(".alerta")).remove();
+	}
+
 
 	if (Object.values(cita).includes("") || (cita.servicios.length === 0)) {
-		mostrarAlerta('Elige al menos un servicio y la fecha y la hora', 'error', '.contenido-resumen', false)
+		mostrarAlerta('Elige al menos un servicio y la fecha y la hora', 'error', '.contenido-resumen', false);
+		return;
 	}
-	else {
-		console.log("vamos para adelante");
-	}
+
+	const { nombre, fecha, hora, servicios } = cita;
+
+	const nombreCliente = document.createElement('P');
+	nombreCliente.innerHTML = `<span>Nombre: </span>  ${nombre}`;
+
+	const fechaCita = document.createElement('P');
+	fechaCita.innerHTML = `<span>Fecha: </span>  ${fecha}`;
+
+	const horaCita = document.createElement('P');
+	horaCita.innerHTML = `<span>Hora: </span>  ${hora}`;
+
+	servicios.forEach(servicio => {
+		const { id, nombre, precio } = servicio;
+		const contenedorServicio = document.createElement('DIV');
+		contenedorServicio.classList.add("contenedor-servicio");
+
+		const textServicio = document.createElement('P');
+		textServicio.textContent = nombre;
+
+		const precioServicio = document.createElement('P');
+		precioServicio.innerHTML = `<span>Precio: </span> ${precio}`;
+
+		contenedorServicio.appendChild(textServicio);
+		contenedorServicio.appendChild(precioServicio);
+
+		resumen.appendChild(contenedorServicio);
+	})
+
+	resumen.appendChild(nombreCliente);
+	resumen.appendChild(fechaCita);
+	resumen.appendChild(horaCita);
 }
+
 
 
 function mostrarAlerta(mensaje, tipo, elemento, autolimpiar = true) {

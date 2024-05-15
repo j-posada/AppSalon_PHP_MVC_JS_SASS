@@ -10,46 +10,44 @@ class LoginController
 {
 	public static function login(Router $router)
 	{
-		$alertas =[];
-		$auth = new Usuario;		
+		$alertas = [];
+		$auth = new Usuario;
 
 		if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 			$auth = new Usuario($_POST);
 			$alertas = $auth->validarLogin();
 
-			if (empty($alertas)){
-				$usuario = Usuario::where('email',$auth->email);
+			if (empty($alertas)) {
+				$usuario = Usuario::where('email', $auth->email);
 
-				if ($usuario){
+				if ($usuario) {
 					//Verificar Paswword y Token Confirmardo
-					if ($usuario->comprobarPasswordAndConfimado($auth->password)){
+					if ($usuario->comprobarPasswordAndConfimado($auth->password)) {
 						// Autenticar al usuario
 						session_start();
-						$_SESSION['id']=$usuario->id;
-						$_SESSION['nombre']=$usuario->nombre. " " . $usuario->apellido;
-						$_SESSION['email']=$usuario->email;
-						$_SESSION['login']=true;
+						$_SESSION['id'] = $usuario->id;
+						$_SESSION['nombre'] = ucwords($usuario->nombre . " " . $usuario->apellido);
+						$_SESSION['email'] = $usuario->email;
+						$_SESSION['login'] = true;
 
 
-						if ($usuario->admin === "1"){
+						if ($usuario->admin === "1") {
 							//Admin
 							$_SESSION['admin'] = $usuario->admin || null; // NO pongo valor directo para que siempre sea el valor de mi db
 							header('Location: /admin');
-						}
-						else{
+						} else {
 							//Cliente
 							header('Location: /cita');
 						}
 					}
-				}
-				else{
-					Usuario::setAlerta('error','Usuario NO encontrado');
+				} else {
+					Usuario::setAlerta('error', 'Usuario NO encontrado');
 				}
 			}
 		}
 		$alertas = Usuario::getAlertas();
-		$router->render('auth/login',[
+		$router->render('auth/login', [
 			'alertas' => $alertas,
 			'auth' => $auth
 		]);
@@ -62,32 +60,30 @@ class LoginController
 
 	public static function olvide(Router $router)
 	{
-		$alertas =[];
+		$alertas = [];
 		if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 			$auth = new Usuario($_POST);
 			$alertas = $auth->validarEmail();
-			if (empty($alertas)){
-				$usuario = Usuario::where('email',$auth->email);
-				if($usuario)
-				{
+			if (empty($alertas)) {
+				$usuario = Usuario::where('email', $auth->email);
+				if ($usuario) {
 					$usuario->generarToken();
 					$usuario->guardar();
 
 					// Pendiente enviar email.
-					$email = new Email($usuario->email,$usuario->nombre,$usuario->token);
+					$email = new Email($usuario->email, $usuario->nombre, $usuario->token);
 					$email->enviarInstrucciones();
 
-					Usuario::setAlerta('exito','Revisa tu email');
-				}
-				else{
-					Usuario::setAlerta('error','Usuario NO encontrado');
+					Usuario::setAlerta('exito', 'Revisa tu email');
+				} else {
+					Usuario::setAlerta('error', 'Usuario NO encontrado');
 				}
 				//debuguear($usuario);
-				
+
 			}
 			//		debuguear($auth);
 		}
-		$alertas = Usuario::getAlertas();	
+		$alertas = Usuario::getAlertas();
 		$router->render('auth/olvide-password', [
 			'alertas' => $alertas
 		]);
@@ -103,18 +99,17 @@ class LoginController
 
 
 		if (empty($usuario)) {
-			Usuario::setAlerta('error','Error: Token no reconocido');
+			Usuario::setAlerta('error', 'Error: Token no reconocido');
 			$error = true;
-		//		debuguear($auth);
+			//		debuguear($auth);
 		}
-		
+
 		if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 			$password = new Usuario($_POST);
 			$alertas = $password->validarPassword();
 
-			if (empty($alertas))
-			{
-				
+			if (empty($alertas)) {
+
 				$usuario->password = null;
 				$usuario->password = $password->password;
 				$usuario->hashPassword();
@@ -124,14 +119,10 @@ class LoginController
 				if ($resultado) {
 					header('Location: /');
 				}
-
-
-
 			}
-			
 		}
 
-		$alertas=Usuario::getAlertas();
+		$alertas = Usuario::getAlertas();
 		$router->render('auth/recuperar-password', [
 			'alertas' => $alertas,
 			'error' => $error
