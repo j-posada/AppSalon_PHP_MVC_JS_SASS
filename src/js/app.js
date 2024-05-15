@@ -22,6 +22,8 @@ function iniciarApp() {
 
 	seleccionarFecha();
 	seleccionarHora();
+
+	mostrarResumen();
 }
 
 function mostrarSeccion() {
@@ -66,15 +68,16 @@ function botonesPaginador() {
 
 	if (paso === 1) {
 		paginaAnterior.classList.add('ocultar');
-		paginaSiguinete.classList.remove('ocultar')
+		paginaSiguinete.classList.remove('ocultar');
 
 	} else if (paso === 3) {
 		paginaAnterior.classList.remove('ocultar');
-		paginaSiguinete.classList.add('ocultar')
+		paginaSiguinete.classList.add('ocultar');
+		mostrarResumen();
 	}
 	else {
 		paginaAnterior.classList.remove('ocultar');
-		paginaSiguinete.classList.remove('ocultar')
+		paginaSiguinete.classList.remove('ocultar');
 	}
 	mostrarSeccion();
 }
@@ -184,17 +187,30 @@ function seleccionarHora() {
 	inputHora.addEventListener('input', function (e) {
 		const hora = (e.target.value).split(':')[0];
 		console.log(hora)
-		if (hora < 10 || hora > 19){ 
+		if (hora < 10 || hora > 19) {
 			e.target.value = '';
-			mostrarAlerta('Fuera de horario de apertura, de 10 a 19h','error')
+			mostrarAlerta('Fuera de horario de apertura, de 10 a 19h', 'error')
 
 		}
-		else{
+		else {
 			cita.hora = e.target.value;
 		}
 
 	})
 }
+
+function mostrarResumen() {
+	const resumen = document.querySelector(".contenido-resumen");
+	console.log(resumen);
+
+	if (Object.values(cita).includes("")) {
+		console.log("Registro incompleto");
+	}
+	else {
+		console.log("vamos para adelante");
+	}
+}
+
 
 function mostrarAlerta(mensaje, tipo) {
 	// revisa que no tengamo ya una alerta.

@@ -51,7 +51,7 @@ include_once __DIR__ . "/../templates/alertas.php"
 
 		</form>
 	</div>
-	<div id="paso-3" class="seccion">
+	<div id="paso-3" class="seccion contenido-resumen">
 		<h2>Resumen</h2>
 		<p class="text-center">Verifica la información antes de aceptar</p>
 	</div>
