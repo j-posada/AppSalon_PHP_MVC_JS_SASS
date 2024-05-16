@@ -31,6 +31,7 @@ include_once __DIR__ . "/../templates/alertas.php"
 					disabled
 				/>
 			</div>
+			<div class="fechaHora">
 			<div class="campo">
 				<label for="fecha">Fecha</label>
 				<input 
@@ -48,12 +49,13 @@ include_once __DIR__ . "/../templates/alertas.php"
 					name="hora" 
 				/>
 			</div>
-
+			</div>
 		</form>
 	</div>
 	<div id="paso-3" class="seccion contenido-resumen">
 		<h2>Resumen</h2>
 		<p class="text-center">Verifica la información antes de aceptar</p>
+		<div class="datos-resumen"></div>
 	</div>
 
 	<div class="paginacion">

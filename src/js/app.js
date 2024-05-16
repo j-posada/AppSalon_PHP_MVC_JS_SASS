@@ -200,30 +200,27 @@ function seleccionarHora() {
 }
 
 function mostrarResumen() {
-	const resumen = document.querySelector(".contenido-resumen");
-	
+	const resumen = document.querySelector(".datos-resumen");
 
 	if (document.querySelector(".alerta")) {
 		(document.querySelector(".alerta")).remove();
 	}
 
+	if (document.querySelector(".datos-resumen")) {
+		(document.querySelector(".datos-resumen")).innerHTML=null;
+	}
 
 	if (Object.values(cita).includes("") || (cita.servicios.length === 0)) {
-		mostrarAlerta('Elige al menos un servicio y la fecha y la hora', 'error', '.contenido-resumen', false);
+		mostrarAlerta('Elige al menos un servicio y la fecha y la hora', 'error', '.datos-resumen', false);
 		return;
 	}
 
 	const { nombre, fecha, hora, servicios } = cita;
 
-	const nombreCliente = document.createElement('P');
-	nombreCliente.innerHTML = `<span>Nombre: </span>  ${nombre}`;
-
-	const fechaCita = document.createElement('P');
-	fechaCita.innerHTML = `<span>Fecha: </span>  ${fecha}`;
-
-	const horaCita = document.createElement('P');
-	horaCita.innerHTML = `<span>Hora: </span>  ${hora}`;
-
+	//
+	const headinSeccionServicios = document.createElement('H3');
+	headinSeccionServicios.innerHTML = ("Servicios Asociados");
+	resumen.appendChild(headinSeccionServicios);
 	servicios.forEach(servicio => {
 		const { id, nombre, precio } = servicio;
 		const contenedorServicio = document.createElement('DIV');
@@ -240,6 +237,19 @@ function mostrarResumen() {
 
 		resumen.appendChild(contenedorServicio);
 	})
+
+	const headinSeccionDatosCita = document.createElement('H3');
+	headinSeccionDatosCita.innerHTML = ("Datos Cita");
+	resumen.appendChild(headinSeccionDatosCita);
+
+	const nombreCliente = document.createElement('P');
+	nombreCliente.innerHTML = `<span>Nombre: </span>  ${nombre}`;
+
+	const fechaCita = document.createElement('P');
+	fechaCita.innerHTML = `<span>Fecha: </span>  ${fecha}`;
+
+	const horaCita = document.createElement('P');
+	horaCita.innerHTML = `<span>Hora: </span>  ${hora}`;
 
 	resumen.appendChild(nombreCliente);
 	resumen.appendChild(fechaCita);
