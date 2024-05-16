@@ -66,9 +66,14 @@ function botonesPaginador() {
 	const paginaAnterior = document.querySelector('#anterior');
 	const paginaSiguinete = document.querySelector('#siguiente');
 
+	if (document.querySelector('.btreservar')) {
+		document.querySelector('.btreservar').remove();
+	}
+
 	if (paso === 1) {
 		paginaAnterior.classList.add('ocultar');
 		paginaSiguinete.classList.remove('ocultar');
+
 
 	} else if (paso === 3) {
 		paginaAnterior.classList.remove('ocultar');
@@ -78,6 +83,7 @@ function botonesPaginador() {
 	else {
 		paginaAnterior.classList.remove('ocultar');
 		paginaSiguinete.classList.remove('ocultar');
+
 	}
 	mostrarSeccion();
 }
@@ -207,7 +213,7 @@ function mostrarResumen() {
 	}
 
 	if (document.querySelector(".datos-resumen")) {
-		(document.querySelector(".datos-resumen")).innerHTML=null;
+		(document.querySelector(".datos-resumen")).innerHTML = null;
 	}
 
 	if (Object.values(cita).includes("") || (cita.servicios.length === 0)) {
@@ -248,13 +254,21 @@ function mostrarResumen() {
 
 	const opciones = { weekday: "long", year: "numeric", month: "long", day: "numeric" };
 	const fechaFormateada = new Date(fecha.replaceAll("-", "/")).toLocaleDateString("es-ES", opciones);
-	console.log(fechaFormateada);
 
 	const fechaCita = document.createElement('P');
 	fechaCita.innerHTML = `<span>Fecha: </span>  ${fechaFormateada}`;
 
 	const horaCita = document.createElement('P');
 	horaCita.innerHTML = `<span>Hora: </span>  ${hora}`;
+
+	//Añadir Botón Reservar
+	const bt_reservar = document.createElement('BUTTON');
+	bt_reservar.classList.add('boton', 'btreservar');
+	bt_reservar.textContent = 'Reservar cita'
+	bt_reservar.onclick = function () {
+		crearCita();
+	}
+	document.querySelector('.paginacion').appendChild(bt_reservar)
 
 	resumen.appendChild(nombreCliente);
 	resumen.appendChild(fechaCita);
@@ -282,7 +296,8 @@ function mostrarAlerta(mensaje, tipo, elemento, autolimpiar = true) {
 			alerta.remove();
 		}, 2500);
 	}
-
-
 }
 
+function crearCita() {
+	alert("ale")
+}
