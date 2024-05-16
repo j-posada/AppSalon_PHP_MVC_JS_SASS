@@ -245,8 +245,13 @@ function mostrarResumen() {
 	const nombreCliente = document.createElement('P');
 	nombreCliente.innerHTML = `<span>Nombre: </span>  ${nombre}`;
 
+
+	const opciones = { weekday: "long", year: "numeric", month: "long", day: "numeric" };
+	const fechaFormateada = new Date(fecha.replaceAll("-", "/")).toLocaleDateString("es-ES", opciones);
+	console.log(fechaFormateada);
+
 	const fechaCita = document.createElement('P');
-	fechaCita.innerHTML = `<span>Fecha: </span>  ${fecha}`;
+	fechaCita.innerHTML = `<span>Fecha: </span>  ${fechaFormateada}`;
 
 	const horaCita = document.createElement('P');
 	horaCita.innerHTML = `<span>Hora: </span>  ${hora}`;
