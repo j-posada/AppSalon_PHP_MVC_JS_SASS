@@ -28,6 +28,13 @@
 	.btreservar{
 		background-color: v.$verde;
 		color: v.$blanco;
+		font-weight: v.$bold;
+		transition: background-color 300ms ease;
+
+		&:hover {
+			cursor: pointer;
+			background-color: darken(v.$verde, 20%);
+		}
 	}
 }
 
