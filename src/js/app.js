@@ -299,5 +299,9 @@ function mostrarAlerta(mensaje, tipo, elemento, autolimpiar = true) {
 }
 
 function crearCita() {
-	alert("ale")
+	const datos = new FormData();
+	datos.append('nombre', 'juan');
+
+
+	console.log([...datos]);
 }
