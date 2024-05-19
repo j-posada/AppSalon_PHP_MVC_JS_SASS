@@ -301,12 +301,14 @@ function mostrarAlerta(mensaje, tipo, elemento, autolimpiar = true) {
 async function crearCita() {
 	const datos = new FormData();
 	datos.append('nombre', 'juan');
+	datos.append('edad', '32');
 
 	//petición hacia la api
 	const url = 'http://localhost:3000/api/citas';
 
 	const respuesta =  await fetch(url,{
-			method: 'POST'
+			method: 'POST',
+			body: datos
 	});
 
 	console.log(await respuesta.json());
