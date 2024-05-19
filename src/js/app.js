@@ -298,10 +298,17 @@ function mostrarAlerta(mensaje, tipo, elemento, autolimpiar = true) {
 	}
 }
 
-function crearCita() {
+async function crearCita() {
 	const datos = new FormData();
 	datos.append('nombre', 'juan');
 
+	//petición hacia la api
+	const url = 'http://localhost:3000/api/citas';
 
-	console.log([...datos]);
+	const respuesta =  await fetch(url,{
+			method: 'POST'
+	});
+
+	console.log(await respuesta.json());
+	//console.log([...datos]);
 }
