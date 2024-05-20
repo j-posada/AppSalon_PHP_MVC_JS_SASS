@@ -22,34 +22,20 @@ include_once __DIR__ . "/../templates/alertas.php"
 		<form action="" class="formulario">
 			<div class="campo">
 				<label for="nombre">Nombre</label>
-				<input 
-					type="text" 
-					id="nombre" 
-					name="nombre" 
-					placeholder="Tu nombre" 
-					value= "<?php echo s($nombre); ?>"
-					disabled
-				/>
+				<input type="text" id="nombre" name="nombre" placeholder="Tu nombre" value="<?php echo s($nombre); ?>" disabled />
 			</div>
 			<div class="fechaHora">
-			<div class="campo">
-				<label for="fecha">Fecha</label>
-				<input 
-					type="date" 
-					id="fecha" 
-					name="fecha" 
-					min = "<?php echo date(('Y-m-d'), strtotime('+1 day')); ?>"
-				/>
-			</div>
-			<div class="campo">
-				<label for="hora">Hora</label>
-				<input 
-					type="time" 
-					id="hora" 
-					name="hora" 
-				/>
-			</div>
-			<input type="hidden" id="id" value="<?php echo $id; ?>" >
+				<div class="campo">
+					<label for="fecha">Fecha</label>
+					<input type="date" id="fecha" name="fecha" min="<?php echo date(('Y-m-d'), strtotime('+1 day')); ?>" />
+				</div>
+				<div class="campo">
+					<label for="hora">Hora</label>
+					<input type="time" id="hora" name="hora" />
+				</div>
+				<div class="campo">
+					<input type="hidden" id="id" value="<?php echo $id; ?>">
+				</div>
 			</div>
 		</form>
 	</div>
@@ -60,16 +46,13 @@ include_once __DIR__ . "/../templates/alertas.php"
 	</div>
 
 	<div class="paginacion">
-		<button
-		id="anterior"
-		class="boton">&laquo;Anterior</button>
-		<button
-		id="siguiente"
-		class="boton">Siguiente &raquo;</button>
+		<button id="anterior" class="boton">&laquo;Anterior</button>
+		<button id="siguiente" class="boton">Siguiente &raquo;</button>
 	</div>
 
 	<?php
 	$script = "
+	<script src='https://cdn.jsdelivr.net/npm/sweetalert2@11'></script>
 	<script src='build/js/app.js'></script>
 	";
 	?>

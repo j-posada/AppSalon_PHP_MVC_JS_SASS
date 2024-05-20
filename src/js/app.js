@@ -92,10 +92,10 @@ function botonesPaginador() {
 }
 
 function bt_paginaSiguiente() {
+
 	const bt_paginaSiguiente = document.querySelector('#siguiente');
 	bt_paginaSiguiente.addEventListener('click', function () {
 		paso++;
-
 		botonesPaginador();
 	});
 
@@ -314,13 +314,35 @@ async function crearCita() {
 	datos.append('hora', hora);
 	datos.append('servicios', idServicios);
 	//petición hacia la api
-	const url = 'http://localhost:3000/api/citas';
 
+	try {
+	const url = 'http://localhost:3000/api/citas';
 	const respuesta = await fetch(url, {
 		method: 'POST',
 		body: datos
 	});
 
-	console.log(await respuesta.json());
+	const resultado = (await respuesta.json());
+
+	if (resultado.resultado) {
+		Swal.fire({
+			icon: "success",
+			title: "Cita Creada",
+			text: "La cita ha sido creada correctamente. Gracias."
+			
+		}).then(() => {
+			window.location.reload();
+		});
+	}
+	} catch (error) {
+		console.log(error)
+		Swal.fire({
+			icon: "error",
+			title: "Error creando cita",
+			text: "No se ha podido crear la cita, intenta de nuevo"
+		})
+	}
+	
+
 	//console.log([...datos]);
 }

@@ -18,9 +18,9 @@
 
 .fechaHora{
 	@include m.tablet {
-		@include m.grid(2, 2rem);
+		@include m.grid(3, 2rem);
 		gap: 0.5rem;
-		grid-template-columns: 0.8fr 1fr;
+		grid-template-columns: 2fr  1fr 1fr;
 		justify-items: start;
 	}
 
