@@ -1,6 +1,7 @@
 let paso = 1;
 
 const cita = {
+	id: '',
 	nombre: "",
 	fecha: "",
 	hora: "",
@@ -18,6 +19,8 @@ function iniciarApp() {
 	bt_paginaSiguiente();
 	bt_paginaAnterior();
 	consultarAPI();
+
+	idCliente();
 	nombreCliente();
 
 	seleccionarFecha();
@@ -171,6 +174,9 @@ function seleccionarServicio(servicio, div) {
 function nombreCliente() {
 	cita.nombre = document.querySelector('#nombre').value;
 }
+function idCliente() {
+	cita.id = document.querySelector('#id').value;
+}
 
 function seleccionarFecha() {
 	const inputFecha = document.querySelector('#fecha');
@@ -275,8 +281,6 @@ function mostrarResumen() {
 	resumen.appendChild(horaCita);
 }
 
-
-
 function mostrarAlerta(mensaje, tipo, elemento, autolimpiar = true) {
 	// revisa que no tengamo ya una alerta.
 	if (document.querySelector(".alerta")) {
@@ -300,15 +304,15 @@ function mostrarAlerta(mensaje, tipo, elemento, autolimpiar = true) {
 
 async function crearCita() {
 
-	const { nombre, fecha, hora, servicios } = cita;
+	const { id, nombre, fecha, hora, servicios } = cita;
 
 	const idServicios = servicios.map(servicio => servicio.id)
 	const datos = new FormData();
-	datos.append('nombre', nombre);
+
+	datos.append('usuarioId', id)
 	datos.append('fecha', fecha);
 	datos.append('hora', hora);
 	datos.append('servicios', idServicios);
-
 	//petición hacia la api
 	const url = 'http://localhost:3000/api/citas';
 

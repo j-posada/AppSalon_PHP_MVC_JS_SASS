@@ -49,6 +49,7 @@ include_once __DIR__ . "/../templates/alertas.php"
 					name="hora" 
 				/>
 			</div>
+			<input type="hidden" id="id" value="<?php echo $id; ?>" >
 			</div>
 		</form>
 	</div>

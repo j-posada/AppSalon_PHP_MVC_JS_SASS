@@ -10,6 +10,7 @@ class CitaController
 		$alertas = [];
 		$router->render('cita/index', [
 			'nombre' => $_SESSION['nombre'],
+			'id' => $_SESSION['id'],
 			'alertas' => $alertas
 		]);
 	}	
