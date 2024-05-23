@@ -1,5 +1,6 @@
 <h1 class="nombre-pagina">Crear Nueva Cita</h1>
-<p class="descripcion-pagina">Elige tus servicios a continuación</p>
+<p class="descripcion-pagina">Hola: <?php echo (s($nombre) ?? '' )?>, completa los datos de tu cita</p>
+
 
 <?php
 include_once __DIR__ . "/../templates/alertas.php"
