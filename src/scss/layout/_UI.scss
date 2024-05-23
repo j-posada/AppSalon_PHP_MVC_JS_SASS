@@ -24,3 +24,29 @@
 	}
 }
 
+.barra{
+	
+	margin: 0;
+	display:flex;
+	justify-content: flex-end;
+	align-items: flex-end;
+	gap: 2rem;
+
+	.boton {
+		font-size: 1.5rem;
+		background-color: v.$rojo;
+		padding: 0.5rem 1rem;
+		color: v.$blanco;
+		border-radius: 2rem;
+		display: block;
+		margin: 0rem;
+		text-transform: uppercase;
+		font-weight: v.$regular;
+		transition: background-color 300ms ease;
+
+		&:hover {
+			cursor: pointer;
+			background-color: darken(v.$rojo, 20%);
+		}
+	}
+}
