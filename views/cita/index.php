@@ -1,7 +1,4 @@
-<div class="barra"> 
-<?php echo s($nombre); ?>
-<a class="boton" href="/logout"> Salir </a>
-</div>
+<?php include_once __DIR__ . '/../templates/barra.php' ?>
 <h1 class="nombre-pagina">Crear Nueva Cita</h1>
 <p class="descripcion-pagina">Completa los datos de tu cita</p>
 <?php
