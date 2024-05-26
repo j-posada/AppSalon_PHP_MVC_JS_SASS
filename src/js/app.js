@@ -44,11 +44,17 @@ function mostrarSeccion() {
 
 	// Mostras la sección pulsada
 	const seccion = document.querySelector(`#paso-${paso}`);
-	seccion.classList.add('mostrar');
+	if (seccion) {
+		seccion.classList.add('mostrar');
+	}
+	
 
 	// Cambiar focus del botón pulsado.
 	const tab = document.querySelector(`[data-paso="${paso}"]`);
-	tab.classList.add('actual');
+	if (tab) {
+		tab.classList.add('actual');
+	}
+	
 
 
 }
