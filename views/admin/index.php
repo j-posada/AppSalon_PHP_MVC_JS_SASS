@@ -18,27 +18,34 @@
 	</form>
 </div>
 <div id="citas-admin">
-	<ul class="citas">
-		<?php
-foreach ($citas as $cita) {
+	<div class="contenedor_citas">
+
+	<?php foreach ($citas as $cita) {
+
+    if ($idCita != null && $idCita !== $cita->id) {
+        echo '</div>';
+    }
+
     if ($idCita !== $cita->id) {
         ?>
-		<li>
-			<p>ID: <span><?php echo $cita->id ?></sapan></p>
-			<p>Hora: <span><?php echo $cita->hora ?></sapan></p>
-			<p>Cliente: <span><?php echo $cita->cliente ?></sapan></p>
-			<p>e-mail: <span><?php echo $cita->email ?></sapan></p>
-			<p>Teléfono: <span><?php echo $cita->telefono ?></sapan></p>
+
+		<div class="cita">
+		<li class='datos_cita'>
+			<div class='hora'><?php echo  substr($cita->hora,0,5) ?></div>
+			<div>ID: <span><?php echo $cita->id ?></span></div>
+			<div>Cliente: <span><?php echo $cita->cliente ?></span></div>
+			<div>e-mail: <span><?php echo '<a href="mailto: '. $cita->email . '">' .  $cita->email . "</a>" ?></span></div>
+			<div>Teléfono: <span><?php echo '<a href="tel: '. $cita->telefono . '">' .  $cita->telefono . "</a>" ?></span></div>
 			<h3> Servicios	</h3>
 		</li>
 		<?php $idCita = $cita->id;
-    }; ?>
-	<p class="servicio"><?php echo $cita->servicio . " " . $cita->precio ?></p>
-	<?php } ?>
-	</ul>
+    }
+    ;?>
+	<div class="servicio"><?php echo $cita->servicio . " " . $cita->precio ?></div>
+	<?php
+}?>
 
-
-</div>
+</div></div>
 
 <?php
 $script = "
