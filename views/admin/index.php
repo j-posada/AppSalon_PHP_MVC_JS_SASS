@@ -20,10 +20,18 @@
 <div id="citas-admin">
 	<div class="contenedor_citas">
 
-	<?php foreach ($citas as $cita) {
+	<?php
+$idCita = null;
+$precio = 0;
+foreach ($citas as $cita) {
+
 
     if ($idCita != null && $idCita !== $cita->id) {
+		echo '<div class="totalprecio"> Total: <span>'. moneyFormat($precio,'ESP') . ' €</span></div>' ;
         echo '</div>';
+		$precio = 0;
+
+		
     }
 
     if ($idCita !== $cita->id) {
@@ -31,19 +39,27 @@
 
 		<div class="cita">
 		<li class='datos_cita'>
-			<div class='hora'><?php echo  substr($cita->hora,0,5) ?></div>
+			<div class='hora'><?php echo substr($cita->hora, 0, 5) ?></div>
 			<div>ID: <span><?php echo $cita->id ?></span></div>
 			<div>Cliente: <span><?php echo $cita->cliente ?></span></div>
-			<div>e-mail: <span><?php echo '<a href="mailto: '. $cita->email . '">' .  $cita->email . "</a>" ?></span></div>
-			<div>Teléfono: <span><?php echo '<a href="tel: '. $cita->telefono . '">' .  $cita->telefono . "</a>" ?></span></div>
+			<div>e-mail: <span><?php echo '<a href="mailto: ' . $cita->email . '">' . $cita->email . "</a>" ?></span></div>
+			<div>Teléfono: <span><?php echo '<a href="tel: ' . $cita->telefono . '">' . $cita->telefono . "</a>" ?></span></div>
 			<h3> Servicios	</h3>
 		</li>
 		<?php $idCita = $cita->id;
     }
     ;?>
-	<div class="servicio"><?php echo $cita->servicio . " " . $cita->precio ?></div>
+	<div class="servicio"><?php
+	echo $cita->servicio . " " . $cita->precio;
+	$precio += $cita->precio;
+
+    ?>
+		</div>
 	<?php
-}?>
+}
+echo '<div class="totalprecio"> Total: <span>'. moneyFormat($precio,'ESP') . ' €</span></div>' ;
+?>
+		
 
 </div></div>
 

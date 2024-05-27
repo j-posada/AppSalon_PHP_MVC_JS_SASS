@@ -20,3 +20,11 @@ function isAuth() : void {
 		header('Location: /');
 	}
 }
+
+function moneyFormat($price,$curr) {
+    $currencies['EUR'] = array(2, ',', '.');        // Euro
+    $currencies['ESP'] = array(2, ',', '.');        // Euro
+    $currencies['USD'] = array(2, '.', ',');        // US Dollar
+
+    return number_format($price, ...$currencies[$curr]);
+}
