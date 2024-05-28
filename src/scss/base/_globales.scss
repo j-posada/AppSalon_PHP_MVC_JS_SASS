@@ -46,31 +46,38 @@ img {
 
 
 ::-webkit-scrollbar {
-  width: 1rem;
-  height: 1rem;
+	width: 1rem;
+	height: 1rem;
 }
+
 ::-webkit-scrollbar-button {
-  width: 2rem;
-  height: 5rem;
+	width: 2rem;
+	height: 5rem;
 }
+
 ::-webkit-scrollbar-thumb {
-  background: v.$azul;
-  border: 1px solid lighten(v.$azul,10%);
-  border-radius: 10px;
+	background: v.$azul;
+	border: 1px solid lighten(v.$azul, 10%);
+	border-radius: 10px;
 }
+
 ::-webkit-scrollbar-thumb:hover {
-  background: darken(v.$azul, 10%);
+	background: darken(v.$azul, 10%);
 }
+
 ::-webkit-scrollbar-thumb:active {
-  background: v.$azul;
+	background: v.$azul;
 }
+
 ::-webkit-scrollbar-track {
-  border: 1px solid darken(v.$gris,30%);
-  border-radius: 10px;
+	border: 1px solid darken(v.$gris, 30%);
+	border-radius: 10px;
 }
+
 ::-webkit-scrollbar-track:active {
-  background: darken(v.$gris,20%);
+	background: darken(v.$gris, 20%);
 }
+
 ::-webkit-scrollbar-corner {
-  background: transparent;
+	background: transparent;
 }

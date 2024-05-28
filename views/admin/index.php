@@ -11,7 +11,7 @@
 			<label for="fecha">Fecha</label>
 			<input
 			type="date"
-			id"fecha"
+			id="fecha"
 			name="fecha"
 			value = <?php echo $fecha; ?>
 			/>
@@ -31,8 +31,6 @@ foreach ($citas as $cita) {
 		echo '<div class="totalprecio"> Total: <span>'. moneyFormat($precio,'ESP') . ' â‚¬</span></div>' ;
         echo '</div>';
 		$precio = 0;
-
-		
     }
 
     if ($idCita !== $cita->id) {
@@ -67,7 +65,7 @@ echo '<div class="totalprecio"> Total: <span>'. moneyFormat($precio,'ESP') . ' â
 <?php
 $script = "
 	<script src='https://cdn.jsdelivr.net/npm/sweetalert2@11'></script>
-	";
+	<script src='build/js/buscador.js'></script>";
 ?>
 
 </div>

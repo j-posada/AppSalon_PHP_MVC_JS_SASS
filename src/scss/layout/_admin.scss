@@ -16,7 +16,7 @@
 .cita {
 	list-style: none;
 	padding: 0;
-	display:block;
+	display: block;
 	padding-bottom: 1rem;
 
 	&:hover {
@@ -32,9 +32,10 @@
 	width: 100%;
 	padding: 1rem;
 
-	.hora{
+	.hora {
 		font-size: 4rem;
 	}
+
 	p {
 		font-weight: v.$bold;
 		color: v.$azul;
@@ -50,7 +51,8 @@
 		font-weight: v.$bold;
 		color: v.$azul;
 
-		span,a {
+		span,
+		a {
 			font-weight: v.$regular;
 			color: v.$blanco;
 		}
@@ -69,13 +71,14 @@
 .servicio {
 	padding-left: 1rem;
 }
-.totalprecio{
+
+.totalprecio {
 	padding: 0 1rem 0 1rem;
-	margin-top:1rem;
-	background-color: darken(v.$azul,20%);
+	margin-top: 1rem;
+	background-color: darken(v.$azul, 20%);
 	text-align: right;
 
-	span{
+	span {
 		font-weight: v.$bold;
 	}
 }

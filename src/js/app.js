@@ -47,14 +47,14 @@ function mostrarSeccion() {
 	if (seccion) {
 		seccion.classList.add('mostrar');
 	}
-	
+
 
 	// Cambiar focus del botón pulsado.
 	const tab = document.querySelector(`[data-paso="${paso}"]`);
 	if (tab) {
 		tab.classList.add('actual');
 	}
-	
+
 
 
 }
@@ -322,24 +322,24 @@ async function crearCita() {
 	//petición hacia la api
 
 	try {
-	const url = 'http://localhost:3000/api/citas';
-	const respuesta = await fetch(url, {
-		method: 'POST',
-		body: datos
-	});
-
-	const resultado = (await respuesta.json());
-
-	if (resultado.resultado) {
-		Swal.fire({
-			icon: "success",
-			title: "Cita Creada",
-			text: "La cita ha sido creada correctamente. Gracias."
-			
-		}).then(() => {
-			window.location.reload();
+		const url = 'http://localhost:3000/api/citas';
+		const respuesta = await fetch(url, {
+			method: 'POST',
+			body: datos
 		});
-	}
+
+		const resultado = (await respuesta.json());
+
+		if (resultado.resultado) {
+			Swal.fire({
+				icon: "success",
+				title: "Cita Creada",
+				text: "La cita ha sido creada correctamente. Gracias."
+
+			}).then(() => {
+				window.location.reload();
+			});
+		}
 	} catch (error) {
 		console.log(error)
 		Swal.fire({
@@ -348,7 +348,7 @@ async function crearCita() {
 			text: "No se ha podido crear la cita, intenta de nuevo"
 		})
 	}
-	
+
 
 	//console.log([...datos]);
 }
