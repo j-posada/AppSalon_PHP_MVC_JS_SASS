@@ -1,10 +1,8 @@
 <?php include_once __DIR__ . '/../templates/barra.php'?>
 
 <h1 class="nombre-pagina">Panel Admin</h1>
-<p class="descripcion-pagina">Bla</p>
-<?php include_once __DIR__ . "/../templates/alertas.php"?>
+<p class="descripcion-pagina">Buscar citas</p>
 
-<h2>Buscar citas</h2>
 <div class="busqueda">
 	<form action="" class="formulario">
 		<div class="campo">
@@ -18,12 +16,20 @@
 		</div>
 	</form>
 </div>
+<?php
+if (count($citas)===0){
+	echo "<h3> No hay citas disponibles para esta fecha </h3>";
+}
+?>
 <div id="citas-admin">
 	<div class="contenedor_citas">
 
 	<?php
 $idCita = null;
 $precio = 0;
+
+
+
 foreach ($citas as $cita) {
 
 
