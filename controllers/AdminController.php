@@ -14,9 +14,8 @@ class AdminController
 
         $fechacheck = explode('-', $fecha);
         if (!checkdate($fechacheck[1], $fechacheck[2], $fechacheck[0])) {
-			header('Location: /error');
-		}
-
+            header('Location: /error');
+        }
 
         // Consultar la base de datos
         $consulta = "SELECT citas.id, citas.hora, CONCAT( usuarios.nombre, ' ', usuarios.apellido) as cliente, ";
@@ -28,7 +27,7 @@ class AdminController
         $consulta .= " ON citasServicios.citaId=citas.id ";
         $consulta .= " LEFT OUTER JOIN servicios ";
         $consulta .= " ON servicios.id=citasServicios.servicioId ";
-        $consulta .= " WHERE fecha =  '" . $fecha ."'" ;
+        $consulta .= " WHERE fecha =  '" . $fecha . "'";
         $consulta .= " ORDER BY citas.hora ";
 
         $citas = AdminCita::SQL($consulta);
@@ -43,4 +42,5 @@ class AdminController
             'fecha' => $fecha,
         ]);
     }
+
 }
