@@ -1,4 +1,13 @@
-<div class="barra"> 
+<div class="barra">
 <?php echo s($nombre); ?>
 <a class="boton" href="/logout"> Salir </a>
 </div>
+
+<?php
+if (isset($_SESSION['admin'])) {?>
+<div class="barra-servicios">
+	<a href="/admin" class="boton">Ver Citas</a>
+	<a href="/servicios" class="boton">Ver Servicios</a>
+	<a href="/servicios/crear" class="boton">Nuevo Servicio</a>
+</div>
+<?php	}?>

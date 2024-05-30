@@ -57,3 +57,30 @@
 		}
 	}
 }
+
+.barra-servicios {
+
+	margin-top: v.$separacion;
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	justify-content: space-between;
+	gap: 2rem;
+
+	.boton {
+		font-size: 1.5rem;
+		background-color: v.$azul;
+		padding: 0.5rem 1rem;
+		color: v.$blanco;
+		border-radius: 0rem;
+		display: block;
+		margin: 0rem;
+		width: auto;
+		font-weight: v.$regular;
+		transition: background-color 300ms ease;
+
+		&:hover {
+			cursor: pointer;
+			background-color: darken(v.$gris, 20%);
+		}
+	}
+}
