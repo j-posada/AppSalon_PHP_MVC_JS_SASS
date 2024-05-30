@@ -32,7 +32,7 @@ class AdminController
 
         $citas = AdminCita::SQL($consulta);
 
-        isAuth();
+        isAdmin();
         $alertas = [];
         $router->render('admin/index', [
             'nombre' => $_SESSION['nombre'],
