@@ -2,6 +2,7 @@
 
 namespace Controllers;
 
+use Model\Servicio;
 use MVC\Router;
 
 class ServicioController
@@ -24,15 +25,22 @@ class ServicioController
         session_start();
         isAdmin();
         $alertas = [];
+        $servicio = new Servicio;
 
-        if ($_SERVER['REQUEST_METHOD' === 'POST']) {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $servicio->sincronizar($_POST);
+            $alertas = $servicio->validar();
+            if (empty($alertas)) {
+                $servicio->guardar();
+                header('Location: /servicios');
+            }
 
         }
-
         $router->render('servicios/crear', [
             'nombre' => $_SESSION['nombre'],
             'id' => $_SESSION['id'],
             'alertas' => $alertas,
+            'servicio' => $servicio,
         ]);
     }
 
@@ -42,7 +50,7 @@ class ServicioController
         isAdmin();
         $alertas = [];
 
-        if ($_SERVER['REQUEST_METHOD' === 'POST']) {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         }
 
@@ -54,7 +62,8 @@ class ServicioController
     }
     public static function eliminar(Router $router)
     {
-        if ($_SERVER['REQUEST_METHOD' === 'POST']) {
+
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         }
     }
