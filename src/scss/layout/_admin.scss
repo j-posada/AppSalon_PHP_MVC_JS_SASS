@@ -23,9 +23,15 @@
 		cursor: pointer;
 		background-color: darken(v.$gris, 45%);
 	}
-
-
 }
+
+.servicios{
+	li{
+	border-bottom: 1px solid v.$azul; 
+}
+	@extend .datos_cita;
+}
+ 
 
 .datos_cita {
 	border-top: 3px solid v.$azul;

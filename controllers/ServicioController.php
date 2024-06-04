@@ -12,11 +12,13 @@ class ServicioController
         session_start();
         isAdmin();
         $alertas = [];
+		$servicios = Servicio::all();
 
         $router->render('servicios/index', [
             'nombre' => $_SESSION['nombre'],
             'id' => $_SESSION['id'],
             'alertas' => $alertas,
+			'servicios' => $servicios
         ]);
     }
 
