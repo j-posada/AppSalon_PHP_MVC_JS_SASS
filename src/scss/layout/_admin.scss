@@ -28,8 +28,9 @@
 .servicios{
 	li{
 	border-bottom: 1px solid v.$azul; 
+	line-height: 1rem;
 }
-	@extend .datos_cita;
+	@extend .datos_cita ;
 }
  
 
@@ -60,7 +61,7 @@
 		span,
 		a {
 			font-weight: v.$regular;
-			color: v.$blanco;
+		//	color: v.$blanco;
 		}
 
 	}

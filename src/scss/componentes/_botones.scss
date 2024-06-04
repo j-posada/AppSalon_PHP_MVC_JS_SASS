@@ -3,21 +3,37 @@
 
 .boton {
 	@include m.boton(v.$azul, v.$blanco);
-}
-
-.boton-eliminar {
 	font-size: 1.2rem;
-	background-color: darken(v.$azul, 30%);
 	padding: 0.5rem 1rem;
-	color: v.$blanco;
 	border-radius: 2rem;
 	display: block;
 	margin: 0rem 0rem 1rem 0rem;
-	font-weight: v.$bold;
+	font-weight: v.$regular;
 	transition: background-color 300ms ease;
+}
+
+.boton-eliminar {
+	background-color: darken(v.$rojo, 25%);
+	color: v.$rojo;
+
 
 	&:hover {
 		cursor: pointer;
 		background-color: v.$rojo;
+		color: v.$blanco;
+	}
+}
+
+.boton-actualizar {
+
+	background-color: darken(v.$naranja, 25%);
+	color: v.$negro;
+	padding-top: 0.7rem;
+
+
+	&:hover {
+		cursor: pointer;
+		background-color: v.$naranja;
+		color: v.$negro;
 	}
 }
