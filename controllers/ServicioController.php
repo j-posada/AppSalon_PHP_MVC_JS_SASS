@@ -77,7 +77,8 @@ class ServicioController
     }
     public static function eliminar()
     {
-
+        session_start();
+        isAdmin();
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 			$id= $_POST['id'];
