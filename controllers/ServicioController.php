@@ -52,17 +52,20 @@ class ServicioController
         isAdmin();
         $alertas = [];
         // Proteger el valor get
-        $id = is_numeric($_GET['id']);
-        if (!$id) {
+        if (!(is_numeric($_GET['id']))) {
             return;
         }
 
         $servicio = Servicio::find($_GET['id']);
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $servicio->sincronizar($_POST);
-            $servicio->guardar();
-            header('Location: /servicios');
 
+            $servicio->sincronizar($_POST);
+            $alertas = $servicio->validar();
+
+            if (empty($alertas)) {
+                $servicio->guardar();
+                header('Location: /servicios');
+            }
         }
 
         $router->render('servicios/actualizar', [
