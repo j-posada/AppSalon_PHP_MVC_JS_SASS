@@ -13,8 +13,8 @@
 }
 
 .boton-eliminar {
-	background-color: darken(v.$rojo, 25%);
-	color: v.$rojo;
+	background-color: darken(v.$rojo, 30%);
+	color: darken(v.$rojo, 10%);
 
 
 	&:hover {
@@ -29,6 +29,7 @@
 	background-color: darken(v.$naranja, 25%);
 	color: v.$negro;
 	padding-top: 0.7rem;
+
 
 
 	&:hover {

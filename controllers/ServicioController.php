@@ -12,13 +12,13 @@ class ServicioController
         session_start();
         isAdmin();
         $alertas = [];
-		$servicios = Servicio::all();
+        $servicios = Servicio::all();
 
         $router->render('servicios/index', [
             'nombre' => $_SESSION['nombre'],
             'id' => $_SESSION['id'],
             'alertas' => $alertas,
-			'servicios' => $servicios
+            'servicios' => $servicios,
         ]);
     }
 
@@ -51,8 +51,17 @@ class ServicioController
         session_start();
         isAdmin();
         $alertas = [];
+        // Proteger el valor get
+        $id = is_numeric($_GET['id']);
+        if (!$id) {
+            return;
+        }
 
+        $servicio = Servicio::find($_GET['id']);
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $servicio->sincronizar($_POST);
+            $servicio->guardar();
+            header('Location: /servicios');
 
         }
 
@@ -60,6 +69,7 @@ class ServicioController
             'nombre' => $_SESSION['nombre'],
             'id' => $_SESSION['id'],
             'alertas' => $alertas,
+            'servicio' => $servicio,
         ]);
     }
     public static function eliminar(Router $router)

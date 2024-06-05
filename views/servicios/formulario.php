@@ -12,6 +12,7 @@
 	<label for="nombre">Precio</label>
 	<input
 	type="number"
+	step="0.50"
 	id="precio"
 	placeholder="Precio Servicio"
 	name="precio"
