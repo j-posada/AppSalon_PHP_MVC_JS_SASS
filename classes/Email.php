@@ -24,11 +24,11 @@ class Email
 
 		//Server settings
 		$mail->isSMTP();                                            //Send using SMTP
-		$mail->Host = 'sandbox.smtp.mailtrap.io';
+		$mail->Host = $_ENV['EMAIL_HOST'];
 		$mail->SMTPAuth = true;
-		$mail->Port = 2525;
-		$mail->Username = '433de03e0e1a22';
-		$mail->Password = 'b0249f95cf0647';
+		$mail->Port = $_ENV['EMAIL_PORT'];
+		$mail->Username = $_ENV['EMAIL_USER'];
+		$mail->Password = $_ENV['EMAIL_PASS'];
 
 		//Recipients
 		$mail->setFrom('no-reply@appsalon.com', 'APP Salon');
@@ -44,7 +44,7 @@ class Email
 
 		$contenido = "<html>";
 		$contenido .= "<p> <strong> Hola ". $this->nombre . "</strong><br>Has creado tu cuenta en appSalon, confirmala pulsando sobre el siguiente enlace:</p>";
-		$contenido .=  "<p><a href='http://localhost:3000/confirmar-cuenta?token=". $this->token ."'>Confirmar</a> </p>";
+		$contenido .=  "<p><a href='". $_ENV['APP_URL'] . "/confirmar-cuenta?token=". $this->token ."'>Confirmar</a> </p>";
 		$contenido .=  "<p>Si tu no solicitaste nada, puedes ignorar este mensaje</p>";
 		$contenido .= "</html>";
 
@@ -60,11 +60,11 @@ class Email
 
 		//Server settings
 		$mail->isSMTP();                                            //Send using SMTP
-		$mail->Host = 'sandbox.smtp.mailtrap.io';
+		$mail->Host = $_ENV['EMAIL_HOST'];
 		$mail->SMTPAuth = true;
-		$mail->Port = 2525;
-		$mail->Username = '433de03e0e1a22';
-		$mail->Password = 'b0249f95cf0647';
+		$mail->Port = $_ENV['EMAIL_PORT'];
+		$mail->Username = $_ENV['EMAIL_USER'];
+		$mail->Password = $_ENV['EMAIL_PASS'];
 
 		//Recipients
 		$mail->setFrom('no-reply@appsalon.com', 'APP Salon');
@@ -80,7 +80,7 @@ class Email
 
 		$contenido = "<html>";
 		$contenido .= "<p> <strong> Hola ". $this->nombre . "</strong><br>Sigue el siguiente enlace para modificar tu contraseña</p>";
-		$contenido .=  "<p><a href='http://localhost:3000/recuperar?token=". $this->token ."'>Restablecer password</a> </p>";
+		$contenido .=  "<p><a href='". $_ENV['APP_URL'] . "/recuperar?token=". $this->token ."'>Restablecer password</a> </p>";
 		$contenido .=  "<p>Si tu no solicitaste nada, puedes ignorar este mensaje</p>";
 		$contenido .= "</html>";
 

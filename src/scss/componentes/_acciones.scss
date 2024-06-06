@@ -7,11 +7,12 @@
 		display: flex;
 		justify-content: flex-end;
 		margin-top: -4rem;
+		gap: 2rem;
 	}
 	a{
-		//color: v.$blanco;
+		color: v.$blanco;
 		display:block;
-	//	margin-bottom: calc(v.$separacion /2);
+		//margin-bottom: calc(v.$separacion /2);
 		text-align: center;
 	}
 }
