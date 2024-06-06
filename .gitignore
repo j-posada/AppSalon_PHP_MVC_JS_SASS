@@ -1,4 +1,5 @@
 /node_modules
+/includes/.env
 /public/build
 package-lock.json
 db/BD_BienesRaices.mwb.bak
