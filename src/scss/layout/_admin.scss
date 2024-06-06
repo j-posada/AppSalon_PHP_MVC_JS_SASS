@@ -7,7 +7,7 @@
 	@include m.tablet {
 		display: grid;
 		grid-template-rows: repeat(auto-fit, auto-fit);
-		grid-template-columns: repeat(3, 1fr);
+		grid-template-columns: repeat(2, 1fr);
 		gap: 8px;
 	}
 
@@ -16,7 +16,9 @@
 .cita {
 	list-style: none;
 	padding: 0;
-	display: block;
+	display: flex;
+	flex-direction: column;
+    justify-content: space-between;
 	padding-bottom: 1rem;
 
 	&:hover {
@@ -27,10 +29,20 @@
 
 .servicios{
 	li{
+		list-style: none;
 	border-bottom: 1px solid v.$azul; 
 	line-height: 1rem;
 }
-	@extend .datos_cita ;
+
+p {
+	font-weight: v.$bold;
+	color: v.$azul;
+}
+span {
+	font-weight: v.$regular;
+	color: v.$blanco;
+}
+	
 }
  
 
@@ -61,7 +73,7 @@
 		span,
 		a {
 			font-weight: v.$regular;
-		//	color: v.$blanco;
+			color: v.$blanco;
 		}
 
 	}
